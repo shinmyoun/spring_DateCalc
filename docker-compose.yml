@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+
+  db:
+    image: mysql
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: example
+      MYSQL_DATABASE: datecalc
+      MYSQL_USER: user
+      MYSQL_PASSWORD: example
+    ports:
+      - 3307:3306
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./conf/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
