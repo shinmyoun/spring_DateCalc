@@ -3,19 +3,22 @@
 <head>
 <meta charset="UTF-8">
 <title>日付計算アプリtop</title>
+<!-- Bootstrapの設定 -->
+<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
+	rel="stylesheet" />
 </head>
 <body>
 	<h1>日付を入力してください(top.html)</h1>
 
 	<form method="post" th:action="@{/calc}">
-		<label>基準となる日付：<input type="date" name="inputdate"
-			value="2020-01-01" max="9999-12-31" required></label><br>
+		<label>基準となる日付：<input type="date" class="form-control"
+			name="inputdate" value="2020-01-01" max="9999-12-31" required></label><br>
 		<button>計算実行</button>
 		<br>
 	</form>
 
 	<a th:href="@{/register}">
-		<button>計算式の新規登録へ</button>
+		<button type="button" class="btn btn-primary">計算式の新規登録へ</button>
 	</a>
 	<!-- ↓↓下記の通りregister用のボタンを生成しても一応動く↓↓
     <form method="get" th:action="@{/register}">
@@ -28,44 +31,44 @@
 		（入力した日付は<span th:text="${inputdate}"></span>）
 	</p>
 
-	<table border=1>
-		<thead>
+	<table class="table table-bordered table-sm">
+		<thead class="thead-light">
 			<tr>
-				<th>計算式ID</th>
-				<th>計算式名</th>
-				<th>加減年</th>
-				<th>加減月</th>
-				<th>加減日</th>
-				<th>計算結果(map)</th>
-				<th>更新ボタン</th>
-				<th>削除ボタン</th>
+				<th scope="col">計算式ID</th>
+				<th scope="col">計算式名</th>
+				<th scope="col">加減年</th>
+				<th scope="col">加減月</th>
+				<th scope="col">加減日</th>
+				<th scope="col">計算結果(map)</th>
+				<th scope="col">更新ボタン</th>
+				<th scope="col">削除ボタン</th>
 			</tr>
 		</thead>
 
 		<tbody th:each="dateCalc:${dateCalc}" th:object="${dateCalc}">
 			<tr>
-				<td th:text="*{id}"></td>
+				<td scope="row" th:text="*{id}"></td>
 				<td th:text="*{name}"></td>
 				<td th:text="*{plusyear}"></td>
 				<td th:text="*{plusmonth}"></td>
 				<td th:text="*{plusday}"></td>
 				<td th:text="${resultdateMap.get(__*{id}__)}"></td>
 				<td><a th:href="@{/update/id={id}(id=*{id})}">
-						<button>更新</button>
+						<button type="button" class="btn btn-primary">更新</button>
 				</a></td>
 				<td>
 					<form method="post" th:action="@{/delete/id={id}(id=*{id})}">
-						<button>削除</button>
+						<button type="button" class="btn btn-secondary">削除</button>
 					</form>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 
-	<table border=1>
-		<thead>
+	<table class="table table-sm">
+		<thead class="thead-dark">
 			<tr>
-				<th>計算結果(配列)</th>
+				<th scope="col">計算結果(配列)</th>
 			</tr>
 		</thead>
 		<tbody th:each="resultdateArray:${resultdateArray}">
@@ -74,5 +77,8 @@
 			</tr>
 		</tbody>
 	</table>
+	<!-- Bootstrapの設定 -->
+	<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+	<script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </body>
 </html>
