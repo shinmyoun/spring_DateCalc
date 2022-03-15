@@ -30,53 +30,54 @@
 	<p th:unless="${inputdate} == null">
 		（入力した日付は<span th:text="${inputdate}"></span>）
 	</p>
+	<div class="container">
+		<table class="table table-bordered table-sm">
+			<thead class="thead-light">
+				<tr>
+					<th scope="col">計算式ID</th>
+					<th scope="col">計算式名</th>
+					<th scope="col">加減年</th>
+					<th scope="col">加減月</th>
+					<th scope="col">加減日</th>
+					<th scope="col">計算結果(map)</th>
+					<th scope="col">更新ボタン</th>
+					<th scope="col">削除ボタン</th>
+				</tr>
+			</thead>
 
-	<table class="table table-bordered table-sm">
-		<thead class="thead-light">
-			<tr>
-				<th scope="col">計算式ID</th>
-				<th scope="col">計算式名</th>
-				<th scope="col">加減年</th>
-				<th scope="col">加減月</th>
-				<th scope="col">加減日</th>
-				<th scope="col">計算結果(map)</th>
-				<th scope="col">更新ボタン</th>
-				<th scope="col">削除ボタン</th>
-			</tr>
-		</thead>
+			<tbody th:each="dateCalc:${dateCalc}" th:object="${dateCalc}">
+				<tr>
+					<td scope="row" th:text="*{id}"></td>
+					<td th:text="*{name}"></td>
+					<td th:text="*{plusyear}"></td>
+					<td th:text="*{plusmonth}"></td>
+					<td th:text="*{plusday}"></td>
+					<td th:text="${resultdateMap.get(__*{id}__)}"></td>
+					<td><a th:href="@{/update/id={id}(id=*{id})}">
+							<button type="button" class="btn btn-primary">更新</button>
+					</a></td>
+					<td>
+						<form method="post" th:action="@{/delete/id={id}(id=*{id})}">
+							<button type="button" class="btn btn-danger">削除</button>
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 
-		<tbody th:each="dateCalc:${dateCalc}" th:object="${dateCalc}">
-			<tr>
-				<td scope="row" th:text="*{id}"></td>
-				<td th:text="*{name}"></td>
-				<td th:text="*{plusyear}"></td>
-				<td th:text="*{plusmonth}"></td>
-				<td th:text="*{plusday}"></td>
-				<td th:text="${resultdateMap.get(__*{id}__)}"></td>
-				<td><a th:href="@{/update/id={id}(id=*{id})}">
-						<button type="button" class="btn btn-primary">更新</button>
-				</a></td>
-				<td>
-					<form method="post" th:action="@{/delete/id={id}(id=*{id})}">
-						<button type="button" class="btn btn-secondary">削除</button>
-					</form>
-				</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<table class="table table-sm">
-		<thead class="thead-dark">
-			<tr>
-				<th scope="col">計算結果(配列)</th>
-			</tr>
-		</thead>
-		<tbody th:each="resultdateArray:${resultdateArray}">
-			<tr>
-				<td th:text="${resultdateArray}"></td>
-			</tr>
-		</tbody>
-	</table>
+		<table class="table table-sm">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">計算結果(配列)</th>
+				</tr>
+			</thead>
+			<tbody th:each="resultdateArray:${resultdateArray}">
+				<tr>
+					<td th:text="${resultdateArray}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
 	<!-- Bootstrapの設定 -->
 	<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
 	<script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
