@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -13,15 +14,19 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	// パスワードのハッシュ化
+	// BCryptPasswordEncoder bcryptアルゴリズムを使用したエンコーダーにより パスワードのハッシュ化を提供しているクラス
 	@Bean
 	public BCryptPasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
 
-	/*
-	 * BCryptPasswordEncoder bcryptアルゴリズムを使用したエンコーダーにより パスワードのハッシュ化を提供しているクラス
-	 */
+	// 静的ファイルには認証をかけない
+	@Override
+	public void configure(WebSecurity web) throws Exception {
+		web.ignoring().antMatchers("/css/**", "/js/**", "/images/**");
+	}
 
+	// 認証設定（ログインとログアウト）
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
@@ -39,7 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-				// インメモリ認証を設定
+				// インメモリ認証を設定 TODO DB認証に変更すること
 				.inMemoryAuthentication()
 
 				// "user"を追加
