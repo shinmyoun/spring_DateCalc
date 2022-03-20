@@ -32,7 +32,7 @@ public class DateCalcController {
 	 * @param Model model
 	 * @return top.html
 	 */
-	@GetMapping("/")
+	@GetMapping({"/", "/top"})
 	public String loginSuccess(Model model) {
 		List<DateCalc> dateCalc = service.selectAll();
 
@@ -130,7 +130,7 @@ public class DateCalcController {
 			return "/register";
 		}
 		service.insertOne(dateCalc);
-		return "redirect:/";
+		return "redirect:/top";
 	}
 
 	// 更新
@@ -151,14 +151,14 @@ public class DateCalcController {
 		}
 
 		service.updateOne(dateCalc);
-		return "redirect:/";
+		return "redirect:/top";
 	}
-
+	
 	// 削除
 	@PostMapping("delete/id={id}")
 	public String deleteOne(@ModelAttribute DateCalc dateCalc) {
 		service.deleteOne(dateCalc);
-		return "redirect:/";
+		return "redirect:/top";
 	}
 
 }
