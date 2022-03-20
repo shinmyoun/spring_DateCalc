@@ -30,8 +30,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testImplementation 'org.springframework.security:spring-security-test'
-	implementation 'org.webjars:jquery:3.5.0'
-    implementation 'org.webjars:bootstrap:4.4.1-1'
+	implementation('org.webjars:jquery:3.5.0')
+    implementation('org.webjars:bootstrap:4.4.1')
+    implementation('org.webjars:webjars-locator:0.40')
 }
 
 tasks.named('test') {

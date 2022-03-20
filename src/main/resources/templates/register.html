@@ -3,41 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <title>日付計算アプリregister</title>
-<link th:href="@{/css/style.css}" rel="stylesheet" type="text/css">
+<!-- Bootstrapの設定 webjars-->
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<h1>新規登録する加減算式を入力してください(register.html)</h1>
-	<form method="post" th:action="@{/register}" th:object="${dateCalc}">
-		<table border=1>
-			<thead>
-				<tr>
-					<th>計算式名</th>
-					<th>加減年</th>
-					<th>加減月</th>
-					<th>加減日</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td><input type="text" th:field="*{name}" placeholder="任意の文字"><br>
-						<span class="form-error" th:if="${#fields.hasErrors('name')}"
-						th:errors="*{name}"></span></td>
+	<!-- 共通部品（header）を呼び出す -->
+	<div th:replace="common/header :: header"></div>
+	
+	<!-- 見出し -->
+	<nav class="container nav py-3">
+		<a class="nav-link disabled" href="#">計算式を登録してください(register.html)</a>
+		<a class="nav-link active" th:href="@{/}">戻る</a>
+	</nav>
+	
+	<!-- テーブル表示 -->
+	<div class="container">
+		<form method="post" th:action="@{/register}" th:object="${dateCalc}">
+			<table class="table table-bordered table-sm">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col">計算式名</th>
+						<th scope="col">加減年</th>
+						<th scope="col">加減月</th>
+						<th scope="col">加減日</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td scope="row"><input class="form-control" type="text" th:field="*{name}"
+							placeholder="任意の文字"><br> <span class="form-error"
+							th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span></td>
 
-					<td><input type="text" th:field="*{plusyear}"
-						placeholder="半角数字"><br> <span class="form-error"
-						th:if="${#fields.hasErrors('plusyear')}">入力値エラー</span></td>
+						<td><input class="form-control" type="text" th:field="*{plusyear}"
+							placeholder="半角数字"><br> <span class="form-error"
+							th:if="${#fields.hasErrors('plusyear')}">入力値エラー</span></td>
 
-					<td><input type="text" th:field="*{plusmonth}"
-						placeholder="半角数字"><br> <span class="form-error"
-						th:if="${#fields.hasErrors('plusmonth')}">入力値エラー</span></td>
+						<td><input class="form-control" type="text" th:field="*{plusmonth}"
+							placeholder="半角数字"><br> <span class="form-error"
+							th:if="${#fields.hasErrors('plusmonth')}">入力値エラー</span></td>
 
-					<td><input type="text" th:field="*{plusday}"
-						placeholder="半角数字"><br> <span class="form-error"
-						th:if="${#fields.hasErrors('plusday')}">入力値エラー</span></td>
-				</tr>
-			</tbody>
-		</table>
-		<button>新規登録</button>
-	</form>
+						<td><input class="form-control" type="text" th:field="*{plusday}"
+							placeholder="半角数字"><br> <span class="form-error"
+							th:if="${#fields.hasErrors('plusday')}">入力値エラー</span></td>
+					</tr>
+				</tbody>
+			</table>
+			<button class="btn btn-primary">新規登録</button>
+		</form>
+	</div>
 </body>
 </html>

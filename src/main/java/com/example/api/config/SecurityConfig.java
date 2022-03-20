@@ -39,7 +39,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		auth
-				// インメモリ認証を設定 インメモリorDB認証のどちらか
+				// インメモリ認証を設定
 				.inMemoryAuthentication()
 
 				// "user"を追加

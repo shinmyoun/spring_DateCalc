@@ -3,33 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <title>日付計算アプリtop</title>
-<!-- Bootstrapの設定 -->
-<link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}"
+<!-- Bootstrapの設定 webjars-->
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
 	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 </head>
 <body>
-	<h1>日付を入力してください(top.html)</h1>
+	<!-- 共通部品（header）を呼び出す -->
+	<div th:replace="common/header :: header"></div>
+	
+	<!-- 見出し -->
+	<nav class="container nav py-3">
+		<a class="nav-link disabled" href="#">top(top.html)</a>
+	</nav>
 
-	<form method="post" th:action="@{/calc}">
-		<label>基準となる日付：<input type="date" class="form-control"
-			name="inputdate" value="2020-01-01" max="9999-12-31" required></label><br>
-		<button>計算実行</button>
-		<br>
-	</form>
+	<!-- 基準日＋計算式登録画面へ -->
+	<div class="container d-flex justify-content-between">
+	     <!-- 基準日 -->
+	     <form method="post" th:action="@{/calc}">
+			<label>基準となる日付：<input type="date" class="form-control"
+				name="inputdate" value="2020-01-01" max="9999-12-31" required>
+			</label> <br>
+			<button>計算実行</button>
+			<br>
+		</form>
+		<!-- 計算式登録画面へ -->
+		<a th:href="@{/register}">
+			<button type="button" class="btn btn-primary">計算式の新規登録へ</button>
+		</a>
+	</div>
 
-	<a th:href="@{/register}">
-		<button type="button" class="btn btn-primary">計算式の新規登録へ</button>
-	</a>
-	<!-- ↓↓下記の通りregister用のボタンを生成しても一応動く↓↓
-    <form method="get" th:action="@{/register}">
-        <button>計算式の新規登録へ</button><br>
-    </form>
-    -->
+	<!-- 選択された基準日を表示 -->
+	<div class="container py-3">
+		<p th:if="${inputdate} == null">（選択された基準となる日付はここに表示されます）</p>
+		<p th:unless="${inputdate} == null">
+			（入力した日付は<span th:text="${inputdate}"></span>）
+		</p>
+	</div>
 
-	<p th:if="${inputdate} == null">（日付を入力したらここに表示されます）</p>
-	<p th:unless="${inputdate} == null">
-		（入力した日付は<span th:text="${inputdate}"></span>）
-	</p>
+	<!-- テーブル表示 -->
 	<div class="container">
 		<table class="table table-bordered table-sm">
 			<thead class="thead-light">
@@ -58,7 +71,7 @@
 					</a></td>
 					<td>
 						<form method="post" th:action="@{/delete/id={id}(id=*{id})}">
-							<button type="button" class="btn btn-danger">削除</button>
+							<button class="btn btn-danger">削除</button>
 						</form>
 					</td>
 				</tr>
@@ -78,8 +91,5 @@
 			</tbody>
 		</table>
 	</div>
-	<!-- Bootstrapの設定 -->
-	<script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
-	<script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 </body>
 </html>
