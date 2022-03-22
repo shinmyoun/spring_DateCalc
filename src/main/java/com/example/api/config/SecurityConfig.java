@@ -23,22 +23,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// 静的ファイルには認証をかけない
 	@Override
 	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/css/**", "/js/**", "/images/**");
+		web.ignoring().antMatchers("/resources/**", "/css/**", "/js/**", "/images/**");
 	}
 
 	// 認証設定（ログインとログアウト）
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-				// 認証リクエストの設定 authorize=認可リクエスト 認証→認可の流れ
-				.authorizeRequests()
-
-				// 認証の必要があるよう設定
-				.anyRequest()// いかなるリクエストも
-				.authenticated()// 認証が必要
-
-				// フォームベースの設定
-				.and().formLogin();
+			// 認証リクエストの設定 authorize=認可リクエスト 認証→認可の流れ
+			.authorizeRequests()
+			    // ログイン画面は直リンクOK
+                .antMatchers("/login").permitAll()
+                // それ以外は直リンク禁止
+				.anyRequest().authenticated()
+                .and()
+            .formLogin()
+                .loginPage("/login") //ログインページはコントローラを経由しないのでViewNameとの紐付けが必要
+                .loginProcessingUrl("/sign_in") //フォームのSubmitURL、このURLへリクエストが送られると認証処理が実行される
+                .usernameParameter("username") //リクエストパラメータのname属性を明示
+                .passwordParameter("password")
+                .defaultSuccessUrl("/top")// ログイン認証成功時の遷移先URLは、defaultSuccessUrl()で指定する必要があるみたい
+                .failureUrl("/login?error")
+                .permitAll()
+                .and()
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login?logout")
+                .permitAll();
 	}
 
 	@Override
@@ -46,7 +57,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		auth
 				// インメモリ認証を設定 TODO DB認証に変更すること
 				.inMemoryAuthentication()
-
 				// "user"を追加
 				.withUser("user")
 				// "password"をBCryptで暗号化
