@@ -2,23 +2,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="https://www.thymeleaf.org"
 	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<!-- Bootstrapの設定 webjars-->
+<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
+	rel="stylesheet" />
+<script th:src="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
 <head>
-<title>Spring Security Example</title>
+<title>ログイン</title>
 </head>
-<body>
-	<div th:if="${param.error}">Invalid username and password.</div>
-	<div th:if="${param.logout}">You have been logged out.</div>
-	<form th:action="@{/sign_in}" method="post">
-		<div>
-			<label> User Name : <input type="text" name="username" />
-			</label>
+<body class="text-center mt-5 bg-light">
+	<div th:if="${param.error}" class="alert alert-danger">ログアウトしました。。。</div>
+	<div th:if="${param.logout}" class="alert alert-primary">ログアウトしました。</div>
+	<h1 class="h3 mt-2 mb-3 font-weight-normal">ログイン画面</h1>
+	<form class="w-25 mx-auto shadow-lg p-3 mb-5 bg-white rounded" th:action="@{/sign_in}" method="post">
+		<div class="form-group">
+			<input type="text" name="username" class="form-control"
+				placeholder="ユーザ名" />
+		</div>
+		<div class="form-group">
+			<input type="password" name="password" class="form-control"
+				placeholder="パスワード" />
 		</div>
 		<div>
-			<label> Password: <input type="password" name="password" />
-			</label>
-		</div>
-		<div>
-			<input type="submit" value="Login" />
+			<input type="submit" class="btn btn-outline-primary my-1"
+				value="Login" />
 		</div>
 	</form>
 </body>

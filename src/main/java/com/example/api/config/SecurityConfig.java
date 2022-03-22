@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,10 +20,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 
 	// 静的ファイルには認証をかけない
-	@Override
-	public void configure(WebSecurity web) throws Exception {
-		web.ignoring().antMatchers("/resources/**", "/css/**", "/js/**", "/images/**");
-	}
+//	@Override
+//	public void configure(WebSecurity web) throws Exception {
+//		web.ignoring().antMatchers("/webjars/**", "/css/**", "/js/**", "/images/**");
+//	}
+	
+	//推奨される方法(5.4以降)
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer() {
+//        return (web) -> web.ignoring().antMatchers("/webjars/**", "/css/**", "/js/**", "/images/**");
+//    }
+
 
 	// 認証設定（ログインとログアウト）
 	@Override
@@ -32,8 +38,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http
 			// 認証リクエストの設定 authorize=認可リクエスト 認証→認可の流れ
 			.authorizeRequests()
-			    // ログイン画面は直リンクOK
-                .antMatchers("/login").permitAll()
+			    // ログイン画面は直リンクOK（上記方法だと警告エラーがでるためcss等のファイルを下記のように除外対象にする）
+                .antMatchers("/login", "/webjars/**", "/css/**", "/js/**", "/images/**").permitAll()
                 // それ以外は直リンク禁止
 				.anyRequest().authenticated()
                 .and()
