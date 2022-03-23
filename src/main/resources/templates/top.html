@@ -1,13 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<title>日付計算アプリtop</title>
-<!-- Bootstrapの設定 webjars-->
-<link th:href="@{/webjars/bootstrap/4.4.1/css/bootstrap.min.css}"
-	rel="stylesheet" />
-<script th:src="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
-<script th:src="@{/webjars/bootstrap/4.4.1/js/bootstrap.min.js}"></script>
+<!-- 共通設定（head）を呼び出す -->
+<head th:replace="common/common :: head('日付計算アプリtop',~{::link},~{::script})">
 </head>
 <body>
 	<!-- 共通部品（header）を呼び出す -->
