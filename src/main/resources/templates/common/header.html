@@ -7,12 +7,12 @@
 <body>
 	<!--/* th:fragmentで別ファイルから読み込めるようにする */-->
 	<header th:fragment="header">
-		<nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
-			<a class="nav-link disabled" href="#">Disabled</a>
-			<form class="form-inline my-2 my-lg-0">
-				<input class="form-control mr-sm-2" type="search"
-					placeholder="Search" aria-label="Search">
-				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+		<nav
+			class="navbar navbar-expand-lg navbar-light bg-light justify-content-center">
+			<a class="nav-link disabled" href="#">LOGO</a>
+			<!--ログアウト-->
+			<form class="form-inline my-2 my-lg-0" th:action="@{/logout}" method="post">
+				<input class="btn btn-outline-danger my-1" type="submit" value="ログアウト" />
 			</form>
 		</nav>
 	</header>
