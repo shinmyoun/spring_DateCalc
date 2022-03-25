@@ -54,6 +54,7 @@
 					<td th:text="*{plusyear}"></td>
 					<td th:text="*{plusmonth}"></td>
 					<td th:text="*{plusday}"></td>
+					<!-- テーブル内に表示する方法としてMapを使う -->
 					<td th:text="${resultdateMap.get(__*{id}__)}"></td>
 					<td><a th:href="@{/update/id={id}(id=*{id})}">
 							<button type="button" class="btn btn-primary">更新</button>

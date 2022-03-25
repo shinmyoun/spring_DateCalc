@@ -25,7 +25,6 @@ public class DateCalcController {
 	@Autowired
 	DateCalcService service;
 
-	//表示
 	/**
 	 * top.htmlを表示
 	 * 
@@ -61,8 +60,9 @@ public class DateCalcController {
 		LocalDate inputdate = LocalDate.parse((inputdateHTML), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 
 		// 確認用
-//      System.out.println("inputdateは " + inputdate);
-//      System.out.println("End");
+//	    System.out.println("Start");
+//        System.out.println("inputdateは " + inputdate);
+//        System.out.println("End");
 
 		// 加減年・月・日格納用の配列を作成
 		int[] plusyear = new int[dateCalc.size()];
@@ -88,20 +88,20 @@ public class DateCalcController {
 //      System.out.println("End");
 //      System.out.println("resultdateArray[0]は：" + resultdateArray[0]);
 
-		// Mapに格納
+		// Mapに格納 テーブル内に表示するため使用
 		Map<Integer, LocalDate> resultdateMap = new HashMap<>();
 		for (int i = 0; i < dateCalc.size(); i++) {
 			resultdateMap.put(i + 1, resultdateArray[i]);
 		}
 
 		// 確認用
-      System.out.println("resultdateMap確認用");
-      for(Integer key : resultdateMap.keySet()) {
-          LocalDate value = resultdateMap.get(key);
-          System.out.println("idが" + key + "のresultdateは" + value);
-      }
-      System.out.println("id1のresultdateMapは" + resultdateMap.get(1));
-      System.out.println("End");
+//      System.out.println("resultdateMap確認用");
+//      for(Integer key : resultdateMap.keySet()) {
+//          LocalDate value = resultdateMap.get(key);
+//          System.out.println("idが" + key + "のresultdateは" + value);
+//      }
+//      System.out.println("id1のresultdateMapは" + resultdateMap.get(1));
+//      System.out.println("End");
 
 		// Thymeleafへファイルへ各値を渡す
 		model.addAttribute("dateCalc", dateCalc);
