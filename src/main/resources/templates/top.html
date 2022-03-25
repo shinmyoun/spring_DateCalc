@@ -7,16 +7,11 @@
 	<!-- 共通部品（header）を呼び出す -->
 	<div th:replace="common/header :: header"></div>
 	
-	<!-- 見出し -->
-	<nav class="container nav py-3">
-		<a class="nav-link disabled" href="#">top(top.html)</a>
-	</nav>
-
 	<!-- 基準日＋計算式登録画面へ -->
-	<div class="container d-flex justify-content-between">
+	<div class="container mt-4 d-flex justify-content-between">
 	     <!-- 基準日 -->
 	     <form method="post" th:action="@{/calc}">
-			<label>基準となる日付：<input type="date" class="form-control"
+			<label>基準となる日付<input type="date" class="form-control"
 				name="inputdate" value="2020-01-01" max="9999-12-31" required>
 			</label> <br>
 			<button>計算実行</button>
@@ -30,9 +25,9 @@
 
 	<!-- 選択された基準日を表示 -->
 	<div class="container py-3">
-		<p th:if="${inputdate} == null">（選択された基準となる日付はここに表示されます）</p>
+		<p th:if="${inputdate} == null"  class="text-danger">（選択された基準となる日付はここに表示されます）</p>
 		<p th:unless="${inputdate} == null">
-			（入力した日付は<span th:text="${inputdate}"></span>）
+			（入力した日付は<span th:text="${inputdate}"  class="text-danger"></span>）
 		</p>
 	</div>
 
