@@ -75,7 +75,7 @@
 &thinsp;&nbsp;
 
 ## 起動手順
-`$ git clone URL`
+`$ git clone https://github.com/shinmyoun/spring_DateCalc.git`
 
 `$ cd spring_DateCalc`
 
