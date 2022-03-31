@@ -6,8 +6,7 @@ CREATE TABLE datecalc (
     plusyear INT(50),
     plusmonth INT(50),
     plusday INT(50)
-    )
-    AUTO_INCREMENT = 1;
+);
 
 INSERT IGNORE INTO datecalc (id, name, plusyear, plusmonth, plusday) VALUES (1, 'A', 1, 1, 1);
 INSERT IGNORE INTO datecalc (id, name, plusyear, plusmonth, plusday) VALUES (2, 'B', 2, 2, 2);
