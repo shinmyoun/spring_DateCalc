@@ -1,4 +1,4 @@
-package com.example.api.controller;
+package com.example.web.controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -16,8 +16,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.api.entity.DateCalc;
-import com.example.api.service.DateCalcService;
+import com.example.web.entity.DateCalc;
+import com.example.web.service.DateCalcService;
 
 @Controller
 public class DateCalcController {

@@ -1,4 +1,4 @@
-package com.example.api.entity;
+package com.example.web.entity;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;

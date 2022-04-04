@@ -1,4 +1,4 @@
-package com.example.api.repository;
+package com.example.web.repository;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
-import com.example.api.entity.DateCalc;
+import com.example.web.entity.DateCalc;
 
 @Mapper
 public interface DateCalcMapper {
