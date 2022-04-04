@@ -7,7 +7,7 @@
 - Spring Boot 2.6.3
 - Spring Security
 - MySQL
-- MyBati
+- MyBatis
 - gradle
 - Bootstrap 4.4.1
 - Docker 20.10.12
