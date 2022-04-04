@@ -19,19 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return new BCryptPasswordEncoder();
 	}
 
-	// 静的ファイルには認証をかけない
-//	@Override
-//	public void configure(WebSecurity web) throws Exception {
-//		web.ignoring().antMatchers("/webjars/**", "/css/**", "/js/**", "/images/**");
-//	}
-	
-	//推奨される方法(5.4以降)
-//    @Bean
-//    public WebSecurityCustomizer webSecurityCustomizer() {
-//        return (web) -> web.ignoring().antMatchers("/webjars/**", "/css/**", "/js/**", "/images/**");
-//    }
-
-
 	// 認証設定（ログインとログアウト）
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
