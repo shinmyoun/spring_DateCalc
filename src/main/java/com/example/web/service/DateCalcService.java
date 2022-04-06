@@ -1,12 +1,12 @@
-package com.example.api.service;
+package com.example.web.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.api.entity.DateCalc;
-import com.example.api.repository.DateCalcMapper;
+import com.example.web.entity.DateCalc;
+import com.example.web.repository.DateCalcMapper;
 
 @Service
 public class DateCalcService {
