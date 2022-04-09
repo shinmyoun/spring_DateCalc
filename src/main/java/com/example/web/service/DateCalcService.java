@@ -2,7 +2,6 @@ package com.example.web.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.web.entity.DateCalc;
@@ -11,8 +10,11 @@ import com.example.web.repository.DateCalcMapper;
 @Service
 public class DateCalcService {
 
-	@Autowired
-	DateCalcMapper mapper;
+	private final DateCalcMapper mapper;
+
+	public DateCalcService(DateCalcMapper mapper) {
+		this.mapper = mapper;
+	}
 
 	// select全件
 	public List<DateCalc> selectAll() {
