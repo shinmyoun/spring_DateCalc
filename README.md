@@ -83,19 +83,49 @@
 
 `$ ./gradlew bootRun`
 
+起動成功時のイメージ
+![start-sucess](https://user-images.githubusercontent.com/97828162/162575171-61d77cac-0f4a-4f94-bce4-7702051c67d7.png)
 
 `http://localhost:8080/`にアクセスするとログイン画面が表示される。
 
 
-## ログインユーザー
-- `user`
-- `1`
+## アプリ画面
+### ログイン画面
+![login](https://user-images.githubusercontent.com/97828162/162599696-54547699-dd64-4dad-8f10-848431c48b70.png)
+- ユーザー名：`user`
+- パスワード ：`1`
+&thinsp;&nbsp;
+
+### 一覧画面
+![list](https://user-images.githubusercontent.com/97828162/162599915-49a98c3c-5093-44b5-89ee-fe641961e3dd.png)
+&thinsp;&nbsp;
+
+### 計算実行後の画面
+![list-push](https://user-images.githubusercontent.com/97828162/162600044-17d8e0ed-dcf5-4a8d-ac4e-60a6f4fad192.png)
+&thinsp;&nbsp;
+
+### 新規登録画面
+![regist](https://user-images.githubusercontent.com/97828162/162600138-72d5510a-b753-49ff-bde6-11eee1a8836d.png)
+&thinsp;&nbsp;
+
+### 更新画面
+![update](https://user-images.githubusercontent.com/97828162/162600156-3445efab-ad2c-441f-a50a-aef4c0b21bcd.png)
+&thinsp;&nbsp;
+
+### ログアウト画面
+![logout](https://user-images.githubusercontent.com/97828162/162600174-cbad60c6-af3d-428b-a486-6acaa47431a2.png)
+
+### ログアウト成功
+![logout-sucess](https://user-images.githubusercontent.com/97828162/162600176-09e65141-4afd-4516-865e-054a6ca303cd.png)
 &thinsp;&nbsp;
 
 ## 終了手順
 (`./gradlew bootRun`コマンドで実行している場合) 
 
 `ctrl + c`で終了
+
+終了時のイメージ
+![end-sucess](https://user-images.githubusercontent.com/97828162/162575296-da64c6a7-1054-4b7d-b2d2-692ed76e9053.png)
 
 `$ docker-compose down`
 &thinsp;&nbsp;
