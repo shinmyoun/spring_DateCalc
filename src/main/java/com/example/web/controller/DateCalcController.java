@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -22,12 +21,15 @@ import com.example.web.service.DateCalcService;
 @Controller
 public class DateCalcController {
 
-	@Autowired
-	DateCalcService service;
+	private final DateCalcService service;
+
+	public DateCalcController(DateCalcService service) {
+		this.service = service;
+	}
 
 	/**
 	 * top.htmlを表示
-	 * 
+	 *
 	 * @param Model model
 	 * @return top.html
 	 */
@@ -46,7 +48,7 @@ public class DateCalcController {
 
 	/**
 	 * 計算結果をtop.htmlに表示
-	 * 
+	 *
 	 * @param Model  model
 	 * @param String inputdateHTML
 	 * @return top.html
@@ -153,7 +155,7 @@ public class DateCalcController {
 		service.updateOne(dateCalc);
 		return "redirect:/top";
 	}
-	
+
 	// 削除
 	@PostMapping("delete/id={id}")
 	public String deleteOne(@ModelAttribute DateCalc dateCalc) {
