@@ -55,9 +55,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		///認証するユーザー情報をデータベースからロードする
-		auth.
-        //userDetailsServiceを使って、認証を行う
-        userDetailsService(userDetailsService);
+		//userDetailsServiceを使って、認証を行う
+		auth.userDetailsService(userDetailsService);
 	}
 
 }
