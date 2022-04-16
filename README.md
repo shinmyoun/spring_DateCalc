@@ -17,6 +17,7 @@
 
 ```mermaid
 stateDiagram-v2
+    [*] --> ログイン画面
     ログイン画面 --> 一覧画面
     一覧画面 --> 新規登録画面: 計算式登録
     一覧画面 --> 更新画面: 計算式編集
@@ -103,9 +104,9 @@ stateDiagram-v2
 
 ## アプリ画面
 ### ログイン画面
-![login](https://user-images.githubusercontent.com/97828162/162599696-54547699-dd64-4dad-8f10-848431c48b70.png)
-- ユーザー名：`user`
-- パスワード ：`1`
+![login](https://user-images.githubusercontent.com/97828162/163658461-13e29c67-ed2a-42a6-987a-c8aef590c273.png)
+- ユーザー名：`hoge`
+- パスワード ：`12345`
 &thinsp;&nbsp;
 
 ### 一覧画面
@@ -148,5 +149,4 @@ stateDiagram-v2
 &thinsp;&nbsp;
 
 ## 修正したいこと
-- DB認証へ変更
 - 認可機能を追加（管理者とユーザーでできることを分ける）
