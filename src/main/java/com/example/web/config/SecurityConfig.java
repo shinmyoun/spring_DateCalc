@@ -6,11 +6,18 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
+
+	private final UserDetailsService userDetailsService;
+
+	public SecurityConfig(UserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
+	}
 
 	// パスワードのハッシュ化
 	// BCryptPasswordEncoder bcryptアルゴリズムを使用したエンコーダーにより パスワードのハッシュ化を提供しているクラス
@@ -47,15 +54,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth
-				// インメモリ認証を設定 TODO DB認証に変更すること
-				.inMemoryAuthentication()
-				// "user"を追加
-				.withUser("user")
-				// "password"をBCryptで暗号化
-				.password(passwordEncoder().encode("1"))
-				// 権限＝ロールを設定
-				.authorities("ROLE_USER");
+		///認証するユーザー情報をデータベースからロードする
+		//userDetailsServiceを使って、認証を行う
+		auth.userDetailsService(userDetailsService);
 	}
 
 }
