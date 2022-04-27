@@ -6,16 +6,13 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import lombok.Getter;
-import lombok.Setter;
 
 public class UserModel implements UserDetails {
 
 	@Getter
-	@Setter
 	private String username;
 
 	@Getter
-	@Setter
     private String password;
 
     private Collection<GrantedAuthority> authorities;
