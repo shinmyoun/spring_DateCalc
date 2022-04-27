@@ -1,5 +1,7 @@
 package com.example.web.service;
 
+import java.util.Optional;
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -19,11 +21,19 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        //findByUsernameで見つけてきたユーザ情報をUserModelに入れる
-		UserModel UserModel = userMapper.findByUsername(username);
+		// findByUsernameで見つけてきたユーザ情報をUserModelに入れる
+		Optional<UserModel> UserModel = userMapper.findByUsername(username);
 
-        //UserDetailsにreturn
-        return UserModel;
+		// userが見つからなかった場合の処理
+		if (UserModel == null) {
+			throw new UsernameNotFoundException("User" + username + "was not found in the database");
+		}
+
+		// UserDetails型のオブジェクトを認証処理に渡す
+		UserDetails userDetails = UserModel.get();
+
+		// UserDetailsにreturn
+		return userDetails;
 	}
 
 }
